@@ -1,0 +1,76 @@
+
+.produit{
+    display: flex;
+
+
+    .text {
+        width: 50%;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-content: center;
+
+
+        h1{
+            padding-bottom: 20px;
+            font-size: 3em;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.19;
+            letter-spacing: normal;
+        }
+
+        h2{
+            font-size: 1.5em;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.23;
+            letter-spacing: normal;
+        }
+
+
+        .couleur {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 30px;
+
+            h3{
+                padding: 40px 0px 40px 0px;
+                font-size: 2em;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: 1.2;
+                letter-spacing: normal;
+            }
+
+            .block-couleur{
+                display: flex;
+            }
+        }
+
+        .button {
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+
+            #ajoutPanier {
+                background-color: #3b3b3b;
+                justify-content: center;
+                cursor: pointer;
+                color: #ffffff;
+                font-size: 15px;
+                padding: 15px 60px;
+                text-decoration: none;
+            }
+        }
+
+        .image{
+            width: 50%;
+            height: auto;
+            display: flex;
+        }  
+    }
+}
