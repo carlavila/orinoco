@@ -1,0 +1,19 @@
+
+@mixin button {
+    position: relative;
+    background:  linear-gradient(to right, #D6BDDD,#B7B4DB,#d5b0d6,#fbd0ff,#ffdaf9,#ffd2f9);
+    background-size: 200%;
+    padding: 7px 40px;
+    color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: .3s;
+    animation: bruh 4s linear infinite;
+}
+
+@mixin button-a {
+    text-decoration: none;
+    color: black; 
+    font-weight: bold;
+}

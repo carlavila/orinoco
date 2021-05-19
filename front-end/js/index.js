@@ -10,8 +10,8 @@ fetch('http://localhost:3000/api/teddies')
   alert(error)
 })
 .then(products => {
-  const allProducts = document.querySelector('#allProducts');
-  for(let i = 0; i < products.length; i++){
+  const allProducts = document.querySelector('#allProducts'); // Retourne le premier élement dans le document correspondant au sélecteur
+  for(let i = 0; i < products.length; i++) {   // BOUCLE FOR, PARCOURIR LE TABLEAU
     allProducts.innerHTML += `
     <div class="products">
       <div class="product">${products[i].name}</div>
@@ -20,8 +20,6 @@ fetch('http://localhost:3000/api/teddies')
       <button class="custom-btn"><a href="produits.html?id=${products[i]._id}">Voir Produit</a> </button>
     </div>` ;
   }
-
-
 });
 
 

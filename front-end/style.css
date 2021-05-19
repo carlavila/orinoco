@@ -28,17 +28,20 @@
   border-radius: 5px;
   margin: 10px auto;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #allProducts .products .product {
-  padding: 10px 0;
+  padding: 20px 0;
   font-weight: bold;
 }
 
 #allProducts .products .image {
-  width: 150px;
-  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+  width: 300px;
+  height: 200px;
   margin: 0 auto;
 }
 
@@ -59,13 +62,16 @@
   font-size: 15px;
   -webkit-transition: .3s;
   transition: .3s;
-  -webkit-animation: bruh 5s linear infinite;
-          animation: bruh 5s linear infinite;
+  -webkit-animation: bruh 4s linear infinite;
+          animation: bruh 4s linear infinite;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 #allProducts .products .custom-btn a {
   text-decoration: none;
   color: black;
+  font-weight: bold;
 }
 
 @-webkit-keyframes bruh {
@@ -94,6 +100,12 @@
 
 /* PRODUITS */
 .teddyProduct {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   width: 100%;
   text-align: center;
   border: 1px solid #f3e9f1;
@@ -102,7 +114,7 @@
 }
 
 .teddyProduct .productName {
-  font-size: 25px;
+  font-size: 50px;
   font-weight: bold;
   margin: 20px;
 }
@@ -113,10 +125,22 @@
   text-align: left;
 }
 
+.Img {
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-column-end: 1;
+  padding-left: 10px;
+}
+
+.Informations {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 2;
+}
+
 .teddyProduct .productImage {
-  width: 80%;
-  margin: 0 auto;
-  border: 1px solid #777;
+  width: 550px;
+  border: 2px solid white;
   border-radius: 5px;
 }
 
@@ -125,20 +149,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .teddyProduct .allBtn .btn {
-  /*background-color: white;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 3px;*/
-  margin: 10px auto;
   position: relative;
   background: -webkit-gradient(linear, left top, right top, from(#D6BDDD), color-stop(#B7B4DB), color-stop(#d5b0d6), color-stop(#fbd0ff), color-stop(#ffdaf9), to(#ffd2f9));
   background: linear-gradient(to right, #D6BDDD, #B7B4DB, #d5b0d6, #fbd0ff, #ffdaf9, #ffd2f9);
@@ -150,13 +168,14 @@
   font-size: 15px;
   -webkit-transition: .3s;
   transition: .3s;
-  -webkit-animation: bruh 5s linear infinite;
-          animation: bruh 5s linear infinite;
+  -webkit-animation: bruh 4s linear infinite;
+          animation: bruh 4s linear infinite;
 }
 
 .teddyProduct .allBtn .btn a {
   text-decoration: none;
-  color: #333;
+  color: black;
+  font-weight: bold;
 }
 
 .teddyProduct .error {
@@ -181,7 +200,7 @@
   width: 700px;
   height: 300px;
   text-align: center;
-  background-color: #e2d4df;
+  background-color: #f3e9f1;
   border: 1px solid #555;
   border-radius: 5px;
   padding: 25px;
@@ -197,16 +216,6 @@
 }
 
 #modal .btnModal {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding-top: 40px;
   position: relative;
   background: -webkit-gradient(linear, left top, right top, from(#D6BDDD), color-stop(#B7B4DB), color-stop(#d5b0d6), color-stop(#fbd0ff), color-stop(#ffdaf9), to(#ffd2f9));
   background: linear-gradient(to right, #D6BDDD, #B7B4DB, #d5b0d6, #fbd0ff, #ffdaf9, #ffd2f9);
@@ -218,14 +227,25 @@
   font-size: 15px;
   -webkit-transition: .3s;
   transition: .3s;
-  -webkit-animation: bruh 5s linear infinite;
-          animation: bruh 5s linear infinite;
+  -webkit-animation: bruh 4s linear infinite;
+          animation: bruh 4s linear infinite;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-top: 40px;
 }
 
 #modal .btnModal a {
-  color: black;
-  font-size: 16px;
   text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
   background-color: white;
   padding: 5px 10px;
   border: none;

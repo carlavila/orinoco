@@ -1,19 +1,19 @@
 
 
-// fonction pour la création du tableau dans le localStorage
-const items = ()=>{
+// Fonction pour la création du tableau dans le localStorage
+/* si l'onglet est fermé ou rafraichit, on perd les données d'un formulaire*/
+/* Maintient une zone de stockage distinct */
 
-    // Créations des variables
-    let total = 0;
-    let items = [];
+const items = ()=> {
+
+  let total = 0; // Créations des variables
+  let items = [];
   
-    // Enregistrment dans le localStorage
-    let teddy = JSON.stringify(items);
+    let teddy = JSON.stringify(items); // Enregistrement dans le localStorage, convertit une valeur JavaScript en chaîne JSON.
     localStorage.setItem ("teddy", teddy);
     localStorage.setItem ("total", total);
   
   }
-  
   
   if(localStorage.teddy == undefined){
   

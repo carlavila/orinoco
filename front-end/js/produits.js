@@ -3,12 +3,15 @@
 //Récupère lien get
 let link = location.href;
 
+
 //récupère id
-let teddyId = link.split('=')[1];
+let teddyId = link.split('=')[1]; //  liste ordonnée de sous-chaînes, place ces sous-chaînes dans un tableau et retourne le tableau.
 
 let element = {};
 
+
 //affichage du produit
+
 fetch('http://localhost:3000/api/teddies')
 .then(response => response.json())
 .then(teddyProduct => {
@@ -21,17 +24,21 @@ fetch('http://localhost:3000/api/teddies')
       element.price = teddyProduct[i].price / 100;
       element.url = teddyProduct[i].imageUrl;
       product.innerHTML += `<form class="teddyProduct">
-        <div class="productName">${teddyProduct[i].name}</div>
-        <img class="productImage" src="${teddyProduct[i].imageUrl}">
-        <div class="productDescription"><h2>Description : </h2>${teddyProduct[i].description}</div>
-        <div class="productColors"><h2>Couleurs : </h2>
-          <div class="error"></div>
-          ${colors(teddyProduct[i].colors)} </div>
-        <div class="productPrice"><h2>Prix : </h2>${teddyProduct[i].price/100} €</div>
-        <div class="allBtn">
-          <button class="btn"><a href="./index.html">Retour</a></button>
-          <button class="btn" id="panier"><a href="./panier.html">Ajouter au panier</a></button>
-        </form>` ;
+      <div class="productName">${teddyProduct[i].name}</div>
+        <article class="Img">
+            <img class="productImage" src="${teddyProduct[i].imageUrl}">
+        </article>
+        <aside class="Informations">
+            <div class="productDescription"><h2>Description : </h2>${teddyProduct[i].description}</div>
+            <div class="productColors"><h2>Couleurs : </h2>
+            <div class="error"></div>
+            ${colors(teddyProduct[i].colors)} </div>
+            <div class="productPrice"><h2>Prix : </h2>${teddyProduct[i].price/100} €</div>
+            <div class="allBtn">
+            <button class="btn"><a href="./index.html">Retour</a></button>
+            <button class="btn" id="panier"><a href="./panier.html">Ajouter au panier</a></button>
+          </aside>
+      </form>` ;
 
     }
   }
@@ -45,12 +52,13 @@ fetch('http://localhost:3000/api/teddies')
 
   let validChoix = "";
 
-  // Evenement choix vernis
+  // Evenement choix couleurs
   for(let i = 0; i < choix.length;i++){
     choix[i].addEventListener("click", ()=>{
       validChoix = choix[i].value;
     });
   };
+
 
   // Evenement click sur ajouter au panier
   panier.addEventListener("click", (e)=>{
@@ -61,9 +69,11 @@ fetch('http://localhost:3000/api/teddies')
       error.innerHTML = "Veuillez sélectionner une couleur";
     } else{
 
+
       // Récupération du tableau dans le localStorage
       let teddy = JSON.parse(localStorage.getItem("teddy"));
 
+      
       //Ajout du produit dans le localStorage
       if(teddy.length == 0){
         ajoutProduct(teddy);
