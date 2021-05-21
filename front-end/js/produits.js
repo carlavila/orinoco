@@ -71,7 +71,7 @@ fetch('http://localhost:3000/api/teddies')
 
 
       // Récupération du tableau dans le localStorage
-      let teddy = JSON.parse(localStorage.getItem("teddy"));
+      let teddy = JSON.parse(localStorage.getItem("teddy"));  /*La méthode analyse une chaîne de caractères JSON et construit la valeur JavaScript ou l'objet décrit par cette chaîne.*/
 
       
       //Ajout du produit dans le localStorage
