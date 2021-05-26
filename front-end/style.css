@@ -21,6 +21,13 @@
 }
 
 #allProducts .products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 400px;
   padding-bottom: 10px;
   border: 1px solid #f3e9f1;
@@ -43,6 +50,29 @@
   width: 300px;
   height: 200px;
   margin: 0 auto;
+}
+
+#allProducts .products .ajout-panier {
+  position: relative;
+  background-color: black;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  width: 76%;
+  margin: auto;
+  opacity: 0;
+  border: 1px solid white;
+  margin-top: -15px;
+}
+
+#allProducts .products .panier {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+#allProducts .products:hover .panier {
+  opacity: 1;
 }
 
 #allProducts .products .price {
@@ -123,6 +153,10 @@
   width: 90%;
   margin: 20px auto;
   text-align: left;
+}
+
+.productDescription h2 {
+  font-size: 20px;
 }
 
 .Img {

@@ -21,6 +21,8 @@ $primary: rgb(243, 233, 241);
 }
 
     #allProducts .products {
+      display: flex;
+      flex-direction: column;
       width: 400px;
       padding-bottom: 10px;
       border: 1px solid $primary;
@@ -42,7 +44,34 @@ $primary: rgb(243, 233, 241);
         width: 300px;
         height: 200px;
         margin: 0 auto; 
-      } 
+      }
+      
+     
+
+      #allProducts .products .ajout-panier {
+        position: relative;
+        background-color: black;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        width: 76%;
+        margin: auto;
+        opacity: 0;
+        border: 1px solid white;
+        margin-top: -15px;
+      }
+
+      #allProducts .products .panier {
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+      }
+
+
+      #allProducts .products:hover .panier {
+        opacity: 1;
+      }
+
+
 
       #allProducts .products .price {
         padding: 10px 0;
@@ -95,6 +124,10 @@ $primary: rgb(243, 233, 241);
       width: 90%;
       margin: 20px auto;
       text-align: left; 
+    }
+
+    .productDescription h2 {
+      font-size: 20px;
     }
 
     .Img {

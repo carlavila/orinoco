@@ -7,11 +7,32 @@
     <title>Accueil Orinoco</title>
     <meta name="title" content="Fiche produit - Orinoco">
     <meta name="description" content="Orinoco est un site e-commerce à thème mettant à la vente des ours en peluche.">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
+
+  <div class="container">
+
+    <nav class="col navbar navbar-expand">
+       <a class="logo" href="index.html"> <img src="img/82fc7900-4462-11eb-9204-6a0cf43fa069.png" width="300" height="150" alt="Logo"></a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+       </button>
+       <div id="navbarContent" class="collapse navbar-collapse"></div>
+       <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a href="panier.html">
+             <ion-icon name="basket"></ion-icon>Panier<span>0</span>
+          </a>
+       </li>
+       </ul>
+       </div>
+    </nav>
+ </div>
+
 
   <main>
     <div id="product"></div>
@@ -20,14 +41,15 @@
         <h3>Produit ajouté au panier !</h3>
         <p>Vous souhaitez : </p>
         <div class="btnModal">
-          <a href="accueil.html">Continuer vos achats </a></br>
+          <a href="index.html">Continuer vos achats </a></br>
           <a href="panier.html">Allez au panier </a>
         </div>
       </div>
     </div>
   </main>
 
+
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   <script src="js/produits.js"></script>
-  <script src="js/colors.js"></script>
    </body> 
    </html>
