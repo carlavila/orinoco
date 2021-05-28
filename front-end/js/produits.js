@@ -60,6 +60,7 @@ fetch('http://localhost:3000/api/teddies')
 
 
   // Evenement click sur ajouter au panier
+
   panier.addEventListener("click", (e)=>{
   e.preventDefault();
 
@@ -123,10 +124,9 @@ const colors = (teddy) =>{
       <input type="radio" class="choix" id="${teddy[i]}" name="colors" value="${teddy[i]}">
       <label for="${teddy[i]}">${teddy[i]}</label></br>
     </div>`;
-
-
   }
 
-  
+
   return result;
 }
+
