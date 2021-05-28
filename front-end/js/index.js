@@ -43,11 +43,11 @@ fetch('http://localhost:3000/api/teddies')
   
       let productNumbers = localStorage.getItem("cartNumbers");
      
-      productNumbers = parseInt(productNumbers);
+      productNumbers = parseInt(productNumbers); // analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée
 
       if(productNumbers) {
-        localStorage.setItem("cartNumbers", productNumbers + 1);
-        document.querySelector(".nav-item span").textContent = productNumbers + 1;
+        localStorage.setItem("cartNumbers", productNumbers + 1); //  lorsque lui sont passées le duo clé-valeur, les ajoute à l'emplacement de stockage, sinon elle met à jour la valeur si la clé existe déjà.
+        document.querySelector(".nav-item span").textContent = productNumbers + 1; // retourne le premier Element dans le document correspondant au sélecteur - ou groupe de sélecteurs - spécifié(s), ou null si aucune correspondance n'est trouvée.
 
       } else {
         localStorage.setItem("cartNumbers", 1);
@@ -64,18 +64,22 @@ fetch('http://localhost:3000/api/teddies')
   
     if(cartItems != null) {
         
-      if(cartItems[products.tag] == undefined) {
+      if(cartItems[products._id] == undefined) {
         cartItems = {
           ...cartItems,
-          [products.tag]: products
+          [products._id]: products
         }
+
+        cartItems[products._id].inCart = 0;
+
       }
-      cartItems[products.tag].inCart += 1;
+      
+      cartItems[products._id].inCart += 1;
   
     } else {
       products.inCart = 1;
       cartItems = {
-          [products.tag]: products
+          [products._id]: products
       }
     }
     

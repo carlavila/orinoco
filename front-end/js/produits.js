@@ -127,5 +127,6 @@ const colors = (teddy) =>{
 
   }
 
+  
   return result;
 }
