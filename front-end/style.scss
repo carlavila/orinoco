@@ -32,7 +32,7 @@ $primary: rgb(243, 233, 241);
     flex-wrap: wrap; 
 }
 
-    #allProducts .products {
+    #allProducts .products-list {
       display: flex;
       flex-direction: column;
       width: 400px;
@@ -45,12 +45,12 @@ $primary: rgb(243, 233, 241);
       font-size: 20px;
     }
 
-      #allProducts .products .product {
+      #allProducts .products-list .product-teddies {
         padding: 20px 0; 
         font-weight: bold;
       }
 
-      #allProducts .products .image {
+      #allProducts .products-list .image-teddies {
         object-fit: cover;
         border-radius: 5px;
         width: 300px;
@@ -60,7 +60,7 @@ $primary: rgb(243, 233, 241);
       
      
 
-      #allProducts .products .ajout-panier {
+      #allProducts .products-list .ajout-panier {
         position: relative;
         background-color: black;
         transition: all 0.3s ease-in-out;
@@ -72,31 +72,29 @@ $primary: rgb(243, 233, 241);
         margin-top: -15px;
       }
 
-      #allProducts .products .panier {
+      #allProducts .products-list .panier {
         color: white;
         text-decoration: none;
         font-size: 15px;
       }
 
 
-      #allProducts .products:hover .panier {
+      #allProducts .products-list:hover .panier {
         opacity: 1;
       }
 
-
-
-      #allProducts .products .price {
+      #allProducts .products-list .price-teddies {
         padding: 10px 0;
         font-size: 15px;
       }
 
-      #allProducts .products .custom-btn {
+      #allProducts .products-list .custom-btn {
         @include button;
         margin-top: 15px; 
         margin-bottom: 10px;
       }
 
-      #allProducts .products .custom-btn a {
+      #allProducts .products-list .custom-btn a {
         @include button-a;
       }
 
@@ -233,52 +231,55 @@ $primary: rgb(243, 233, 241);
     
 /* PANIER */
 
-.products-container {
-    max-width: 650px;
-    justify-content: space-around;
-    margin: 0 auto;
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.products-container .image {
-  width: 300px;
-}
 
 .product-header {
-  width: 100%;
-  max-width: 650px;
+  max-width: 1000px;
   display: flex;
-  justify-content: flex-start;
-  border-bottom: 4px solid lightgrey;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 4px solid $primary;
   margin: 0 auto;
-}
-
-.product-title {
-  width: 45%;
-}
-
-.price {
-  width: 15%;
-  display: flex;
-  align-items: center;
-}
-
-.quantity {
-  width: 30%;
-  display: flex;
-  align-items: center;
-}
-
-.total {
-  width: 10%;
-  display: flex;
-  align-items: center;
+  margin-top: 30px;
 }
 
 .product {
+  max-width: 1000px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  }
+  align-items: center;
+  padding-bottom: 10px;
+  margin: 0 auto;
+
+    .image {
+      width: 200px;
+    }
+
+    .price {
+      padding-left: 150px;
+      padding-bottom: 10px;
+    }
+
+    .quantity {
+      padding-bottom: 10px;
+      padding-left: 200px;
+    }
+    
+    .total {
+      padding-bottom: 10px;
+      padding-left: 200px;
+    }
+
+}
+
+.tediesTotalContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 30px;
+  padding-right: 15px;
+}
+
+.supprimer {
+  width: 30px;
+  
+}

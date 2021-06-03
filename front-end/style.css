@@ -31,7 +31,7 @@
       flex-wrap: wrap;
 }
 
-#allProducts .products {
+#allProducts .products-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -49,12 +49,12 @@
   font-size: 20px;
 }
 
-#allProducts .products .product {
+#allProducts .products-list .product-teddies {
   padding: 20px 0;
   font-weight: bold;
 }
 
-#allProducts .products .image {
+#allProducts .products-list .image-teddies {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
@@ -63,7 +63,7 @@
   margin: 0 auto;
 }
 
-#allProducts .products .ajout-panier {
+#allProducts .products-list .ajout-panier {
   position: relative;
   background-color: black;
   -webkit-transition: all 0.3s ease-in-out;
@@ -76,22 +76,22 @@
   margin-top: -15px;
 }
 
-#allProducts .products .panier {
+#allProducts .products-list .panier {
   color: white;
   text-decoration: none;
   font-size: 15px;
 }
 
-#allProducts .products:hover .panier {
+#allProducts .products-list:hover .panier {
   opacity: 1;
 }
 
-#allProducts .products .price {
+#allProducts .products-list .price-teddies {
   padding: 10px 0;
   font-size: 15px;
 }
 
-#allProducts .products .custom-btn {
+#allProducts .products-list .custom-btn {
   position: relative;
   background: -webkit-gradient(linear, left top, right top, from(#D6BDDD), color-stop(#B7B4DB), color-stop(#d5b0d6), color-stop(#fbd0ff), color-stop(#ffdaf9), to(#ffd2f9));
   background: linear-gradient(to right, #D6BDDD, #B7B4DB, #d5b0d6, #fbd0ff, #ffdaf9, #ffd2f9);
@@ -109,7 +109,7 @@
   margin-bottom: 10px;
 }
 
-#allProducts .products .custom-btn a {
+#allProducts .products-list .custom-btn a {
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -299,71 +299,8 @@
 }
 
 /* PANIER */
-.products-container {
-  max-width: 650px;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin: 0 auto;
-  margin-top: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.products-container .image {
-  width: 300px;
-}
-
 .product-header {
-  width: 100%;
-  max-width: 650px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  border-bottom: 4px solid lightgrey;
-  margin: 0 auto;
-}
-
-.product-title {
-  width: 45%;
-}
-
-.price {
-  width: 15%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.quantity {
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.total {
-  width: 10%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.product {
+  max-width: 1000px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -371,7 +308,64 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-bottom: 4px solid #f3e9f1;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.product {
+  max-width: 1000px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+  margin: 0 auto;
+}
+
+.product .image {
+  width: 200px;
+}
+
+.product .price {
+  padding-left: 150px;
+  padding-bottom: 10px;
+}
+
+.product .quantity {
+  padding-bottom: 10px;
+  padding-left: 200px;
+}
+
+.product .total {
+  padding-bottom: 10px;
+  padding-left: 200px;
+}
+
+.tediesTotalContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-top: 30px;
+  padding-right: 15px;
+}
+
+.supprimer {
+  width: 30px;
 }
 /*# sourceMappingURL=style.css.map */

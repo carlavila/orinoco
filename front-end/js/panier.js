@@ -1,5 +1,4 @@
 
-
 let carts = document.querySelectorAll(".ajout-panier");
 
 for (let i=0; i < carts.length; i++) {
@@ -87,30 +86,54 @@ if(cartCost != null) {
 
 }
 
+
 function displayCart() {
-    let cartItems = localStorage.getItem("productsInCart")
-    cartItems = JSON.parse(cartItems);
-    let productContainer = document.querySelector
-    (".products");
-  
-    console.log(cartItems);
-    if(cartItems && productContainer) {
-        productContainer.innerHTML = '';
-        Object.values(cartItems).map(products => {
-            productContainer.innerHTML += `
-            <div class="product">
-                <img class="image" src="${products.imageUrl}">
-                <span>${products.name}</span>
-            </div>
-            <div class="price">${products.price/100} €</div>
-            `;
-        
-        });
-  }
+  let cartItems = localStorage.getItem("productsInCart")
+  cartItems = JSON.parse(cartItems);
+  let productContainer = document.querySelector
+  (".selected-products");
+  let cartCost = localStorage.getItem("totalCost")
 
+  if(cartItems && productContainer) {
+      productContainer.innerHTML = '';
+      Object.values(cartItems).map(products => {
+          productContainer.innerHTML += `
+          <div class="product">
+              <img class="image" src="${products.imageUrl}">
+              <div class="price">${products.price/100},00 €</div>
+              <div class="quantity">
+                  <ion-icon name="chevron-back-circle-outline"></ion-icon><span>${products.inCart}</span>
+                  <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+              </div>
+              <div class="total">
+                  ${products.inCart * products.price/100},00 €
+              </div>
+          </div>
+          <div class="text-center">
+          <button id="vider_panier" class="vider_panier" type="button" onclick="viderPanier()">Vider le panier</button>
+          `;
+      });
 
+      productContainer.innerHTML += `
+        <div class="teddiesTotalContainer">
+            <h4 class="teddiesTotalTitle">
+                PRIX TOTAL :
+            </h4>
+            <h4 class="teddiesTotal">
+                 ${cartCost},00 €
+            </h4>
+      `
 }
-
+}
+//Vider le panier et le localStorage
+function viderPanier() {
+  localStorage.clear();
+  location.reload();
+}
 
 onLoadCartsNumbers();
 displayCart();
+
+
+
+

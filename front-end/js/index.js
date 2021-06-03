@@ -13,11 +13,11 @@ fetch('http://localhost:3000/api/teddies')
   const allProducts = document.querySelector('#allProducts'); // Retourne le premier élement dans le document correspondant au sélecteur
   for(let i = 0; i < products.length; i++) {   // BOUCLE FOR, PARCOURIR LE TABLEAU
     allProducts.innerHTML += `
-    <div class="products">
-      <div class="product">${products[i].name}</div>
-      <img class="image" src="${products[i].imageUrl}">
+    <div class="products-list">
+      <div class="product-teddies">${products[i].name}</div>
+      <img class="image-teddies" src="${products[i].imageUrl}">
       <a class="ajout-panier panier" href="#">Ajouter au panier</a>
-      <div class="price">${products[i].price/100} €</div>
+      <div class="price-teddies">${products[i].price/100} €</div>
       <button class="custom-btn"><a href="produits.html?id=${products[i]._id}">Voir Produit</a> </button>
     </div>` ;
   }
