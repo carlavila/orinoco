@@ -91,6 +91,13 @@ fetch('http://localhost:3000/api/teddies')
   }
   
 
+  
+
+
+
+
+
+
  // Calculer le total des produits qu'on ajoute au panier
 
 function totalCost(products){

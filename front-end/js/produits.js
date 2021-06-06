@@ -20,6 +20,7 @@ fetch('http://localhost:3000/api/teddies')
     if(teddyProduct[i]._id == teddyId){
       element._id = teddyProduct[i]._id;
       element.name = teddyProduct[i].name;
+      
       element.price = teddyProduct[i].price / 100;
       element.url = teddyProduct[i].imageUrl;
       product.innerHTML += `<form class="teddyProduct">
@@ -60,8 +61,6 @@ fetch('http://localhost:3000/api/teddies')
 
 
   // Evenement click sur ajouter au panier
-
-
   panier.addEventListener("click", (e)=>{
   e.preventDefault();
 
@@ -115,6 +114,24 @@ function saveProduct(teddy){
   panier.style.display = "none";
 }
 
+//fonction Récupère couleur du produit
+const colors = (teddy) =>{
+  let result = "";
+
+  for(let i =0; i < teddy.length; i++){
+    result += `<div>
+      <input type="radio" class="choix" id="${teddy[i]}" name="colors" value="${teddy[i]}">
+      <label for="${teddy[i]}">${teddy[i]}</label></br>
+    </div>`;
+  }
+
+  return result;
+  
+}
+
+
+
+
 
 let carts = document.querySelectorAll(".ajout-panier");
 
@@ -150,6 +167,7 @@ let carts = document.querySelectorAll(".ajout-panier");
       }   
 
       setItems(products);
+
   }
   
   function setItems(products){
@@ -185,6 +203,11 @@ let carts = document.querySelectorAll(".ajout-panier");
   }
   
 
+
+
+
+
+
  // Calculer le total des produits qu'on ajoute au panier
 
 function totalCost(products){
@@ -207,18 +230,5 @@ function totalCost(products){
 
 
 
-//fonction Récupère couleur du produit
-const colors = (teddy) =>{
-  let result = "";
 
-  for(let i =0; i < teddy.length; i++){
-    result += `<div>
-      <input type="radio" class="choix" id="${teddy[i]}" name="colors" value="${teddy[i]}">
-      <label for="${teddy[i]}">${teddy[i]}</label></br>
-    </div>`;
-  }
-
-  return result;
-  
-}
 

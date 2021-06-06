@@ -33,16 +33,22 @@
     </nav>
  </div>
 
+
  <div class="products-container">
   <div class="product-header">
      <h5 class="product-title">PRODUIT</h5>
      <h5 class="product-price">PRIX</h5>
      <h5 class="product-quantity">QUANTITÉ</h5>
+     <h5 class="product-colors">COULEURS</h5>
      <H5 class="product-total">TOTAL</H5>
   </div>
-  <div class="selected-products">
 
-  </div>
+  <div class="selected-products"></div>
+</div>
+
+<div class="no-products">
+    <button id="vider_panier" class="vider_panier" type="button" onclick="viderPanier()">Vider le panier</button>
+    <div id="panier_vide" class="panier_vide"></div>
 </div>
 
 
@@ -97,7 +103,6 @@
       <input type="submit" id="envoi" name="envoi" value="Commander" class="btn btn-success" />
   </form>
 </section>
-<!--EndForm-->
   </main>
 
 

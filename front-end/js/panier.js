@@ -1,4 +1,10 @@
 
+
+                                                               // PANIER
+
+
+// AJOUTER LES PRODUITS DANS LE PANIER
+
 let carts = document.querySelectorAll(".ajout-panier");
 
 for (let i=0; i < carts.length; i++) {
@@ -19,7 +25,7 @@ function onLoadCartsNumbers() {
 
 function cartNumbers(products) {
 
-    let productNumbers = localStorage.getItem("cartNumbers");
+    let productNumbers = localStorage.getItem("cartNumbers"); //La méthode getItem() renvoie la valeur de l'élément d'objet de stockage spécifié.
    
     productNumbers = parseInt(productNumbers); // analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée
 
@@ -31,8 +37,7 @@ function cartNumbers(products) {
       localStorage.setItem("cartNumbers", 1);
       document.querySelector(".nav-item span").textContent = 1;
     }   
-
-    setItems(products);
+    setItems(products); // La méthode setItem() définit la valeur de l'élément d'objet de stockage spécifié.
 }
 
 function setItems(products){
@@ -68,24 +73,22 @@ function setItems(products){
 }
 
 
-// Calculer le total des produits qu'on ajoute au panier
+// CALCULER LE TOTAL DES PRODUITS QU'ON AJOUTE AU PANIER 
 
 function totalCost(products){
 // console.log("The product price is", products.price/100)
 let cartCost = localStorage.getItem("totalCost")
-
-console.log("My cartCost is", cartCost);
-console.log(typeof cartCost);
-
+//console.log("My cartCost is", cartCost);
+//console.log(typeof cartCost);
 if(cartCost != null) {
     cartCost = parseInt (cartCost); // Convertir string en Number
     localStorage.setItem("totalCost", cartCost + products.price/100);
 } else {
     localStorage.setItem("totalCost", products.price/100)
 }
-
 }
 
+// FAIRE APPARAITRE LES PRODUITS DANS LE PANIER
 
 function displayCart() {
   let cartItems = localStorage.getItem("productsInCart")
@@ -102,9 +105,9 @@ function displayCart() {
               <img class="image" src="${products.imageUrl}">
               <div class="price">${products.price/100},00 €</div>
               <div class="quantity">
-                  <ion-icon name="chevron-back-circle-outline"></ion-icon><span>${products.inCart}</span>
-                  <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+                 <span>${products.inCart}</span>
               </div>
+              <div class="color">${products.colors}</div>
               <div class="total">
                   ${products.inCart * products.price/100},00 €
               </div>
@@ -125,7 +128,36 @@ function displayCart() {
       `
 }
 }
-//Vider le panier et le localStorage
+
+// LORSQUE LE PANIER EST VIDE
+
+let panier = JSON.parse(localStorage.getItem("panier"));
+
+//Condition pour afficher le panier
+if (panier) {
+  ligneTableau();
+} else {
+  tableauVide();
+}
+
+//Boucle importation 
+function ligneTableau() {
+  panier.forEach(function(result, index) {infosHTML(result, index);});
+  totalPanier();
+  cartNumber();
+}
+
+function tableauVide() { // Fonction pour tableau vide (pas d'article)
+  document.getElementById("panier_vide").innerHTML += `
+    <div class="message">
+      <h3 class="message_vide">Votre panier est vide...</h3>
+    </div>`
+  ;
+  document.getElementById("vider_panier").style.display = "none";
+}
+
+
+// VIDER LE PANIER ET LE LOCALSTORAGE LORSQU'ON CLIQUE SUR LE BOUTTON 
 function viderPanier() {
   localStorage.clear();
   location.reload();
@@ -135,5 +167,40 @@ onLoadCartsNumbers();
 displayCart();
 
 
+
+                                                                // FORMULAIRE
+
+
+
+//Evènement pour vérifier le champ mail en enlevant le focus (le focus permet de le selectionner directement au chargement de la page,il permet à l'utilisateur de saisir directement du texte sans devoir cliquer auparavant sur le champ. )
+document.querySelector("#mail").addEventListener("blur", function() { //retire le focus de l'élément
+  const mail = document.querySelector("#mail").value;
+  const regexEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; //Utilisation de regex pour vérifier les caractères
+  if (!regexEmail.test(mail)) {
+    document.querySelector("#erreur_mail").textContent =
+      "email non conforme";
+  }
+});
+
+//Evenement pour vérifier le champ du code postal en enlevant le focus
+document.querySelector("#postalcode").addEventListener("blur", function() {
+  const postalCode = document.querySelector("#postalcode").value;
+  const regexEmail = /[0-9]{5}/; //Utilisation de regex pour vérifier les caractères
+  if (!regexEmail.test(postalCode)) {
+    document.querySelector("#erreur_code").textContent =
+      "Code postal non valide";
+  }
+});
+
+
+//Evènement pour vérifier le champ adresse en enlevant le focus 
+document.querySelector("#adress").addEventListener("blur", function() { //retire le focus de l'élément
+  const adress = document.querySelector("#adress").value;
+  const regexAdress = /[0-9]{5}/ ; //Utilisation de regex pour vérifier les caractères
+  if (!regexAdress.test(adress)) {
+    document.querySelector("#erreur_adress").textContent =
+      "adresse non conforme";
+  }
+});
 
 
