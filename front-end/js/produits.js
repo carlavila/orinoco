@@ -1,234 +1,188 @@
 
-//Récupère lien get
-let link = location.href;
+//Initialisation de la constante pour rechercher l'ID dans l'url, paramétrer l'URL
+const adresseChoix = window.location.search; // Renvoie un objet Location contenant des informations concernant l'URL actuelle du document et fournit des méthodes pour modifier cette URL. Cette propriété peut être utilisée pour charger une autre page.
+const adresseRecu = new URLSearchParams (adresseChoix);
+const id = adresseRecu.get ('id');
 
 
-//récupère id
-let teddyId = link.split('=')[1]; //  liste ordonnée de sous-chaînes, place ces sous-chaînes dans un tableau et retourne le tableau.
-
-let element = {};
-
-
-//affichage du produit
-
-fetch('http://localhost:3000/api/teddies')
-.then(response => response.json())
-.then(teddyProduct => {
-  const product = document.querySelector('#product');
-
-  for(let i =0; i < teddyProduct.length; i++){
-    if(teddyProduct[i]._id == teddyId){
-      element._id = teddyProduct[i]._id;
-      element.name = teddyProduct[i].name;
+//Création de la fonction général pour la page produit
+const getTeddies = async function() {
+  try{
+    //Création d'une variable pour récupérer la réponse de l'envoie fetch qui récupère l'id de l'url
+    let reponse = await fetch('http://localhost:3000/api/teddies/' + id);
+    //Création d'une condition if si la réponse est ok
+    if (reponse.status === 200){
+      let teddies = await reponse.json();
       
-      element.price = teddyProduct[i].price / 100;
-      element.url = teddyProduct[i].imageUrl;
-      product.innerHTML += `<form class="teddyProduct">
-      <div class="productName">${teddyProduct[i].name}</div>
-        <article class="Img">
-            <img class="productImage" src="${teddyProduct[i].imageUrl}">
-        </article>
-        <aside class="Informations">
-            <div class="productDescription"><h2>Description : </h2>${teddyProduct[i].description}</div>
-            <div class="productColors"><h2>Couleurs : </h2>
-            <div class="error"></div>
-            ${colors(teddyProduct[i].colors)} </div>
-            <div class="productPrice"><h2>Prix : </h2>${teddyProduct[i].price/100} €</div>
-            <div class="allBtn">
-            <button class="btn"><a href="./index.html">Retour</a></button>
-            <button class="btn" id="panier"><a href="./panier.html">Ajouter au panier</a></button>
-          </aside>
-      </form>` ;
-
-    }
-  }
-
-
-  // Récupération des éléments du DOM
-  const choix = document.querySelectorAll('.choix');
-  const panier = document.querySelector('#panier');
-  const modal = document.querySelector('#modal');
-
-
-  let validChoix = "";
-
-  // Evenement choix couleurs
-  for(let i = 0; i < choix.length;i++){
-    choix[i].addEventListener("click", ()=>{
-      validChoix = choix[i].value;
-    });
-  };
-
-
-  // Evenement click sur ajouter au panier
-  panier.addEventListener("click", (e)=>{
-  e.preventDefault();
-
-    if(validChoix == ""){
-      const error = document.querySelector('.error');
-      error.innerHTML = "Veuillez sélectionner une couleur";
-    } else{
-
-    
-
-      // Récupération du tableau dans le localStorage
-      let teddy = JSON.parse(localStorage.getItem("teddy"));  /*La méthode analyse une chaîne de caractères JSON et construit la valeur JavaScript ou l'objet décrit par cette chaîne.*/
       
-      //Ajout du produit dans le localStorage
-      if(teddy.length == 0){
-        ajoutProduct(teddy);
-        saveProduct(teddy);
+      // Récupération de la div avec id page-produit pour mettre le titre H1
+      const divH1PageProduit = document.getElementById('page-produit');
 
-      }else{
-        for(let i=0; i < teddy.length; i++){
-          if(teddy[i]._id == element._id){
-            teddy[i].quantite++;
-            teddy[i].newPrice = teddy[i].price * teddy[i].quantite;
-            saveProduct(teddy);
-            break;
-          }else{
-            ajoutProduct(teddy);
-            saveProduct(teddy);
-            break;
+      //Création du h1 pour le titre du teddy
+      const h1PageProduit = document.createElement('h1');
+      divH1PageProduit.appendChild(h1PageProduit);
+      h1PageProduit.textContent = 'Produit "' + teddies.name + '"';
+
+      //--------------------------------------------------------------------\\
+
+      // Récupération de la div avec id produit-personaliser pour mettre la personnalisation du produit
+      const divPageProduit = document.getElementById('produit-personnaliser');
+
+      //Création d'une div "row" dans la div produit-personnaliser
+      const divRowProduit = document.createElement('div');
+      divPageProduit.appendChild(divRowProduit);
+      divRowProduit.className = 'row';
+
+      //Création d'une div "col" dans la div row
+      const divColProduit = document.createElement('div');
+      divRowProduit.appendChild(divColProduit);
+      divColProduit.className = 'col-sm-12 accueil-ours';
+
+      //Création du descriptif pour l'ours sélectionné
+      const titreDescriptifOurs = document.createElement('h2');
+      divColProduit.appendChild(titreDescriptifOurs);
+      titreDescriptifOurs.textContent = "Descriptif :";
+
+      //Création du descriptif pour l'ours sélectionné
+      const descriptifOurs = document.createElement('p');
+      divColProduit.appendChild(descriptifOurs);
+      descriptifOurs.textContent = teddies.description;
+
+      //Création de l'image avec l'id de l'URL
+      const imgProduit = document.createElement('img');
+      divColProduit.appendChild(imgProduit);
+      imgProduit.setAttribute('src', teddies.imageUrl);
+      imgProduit.setAttribute('alt', "Ours en peluche qui s'appelle " + teddies.name);
+      imgProduit.setAttribute('title', "Ours qui s'appelle " + teddies.name);
+      imgProduit.setAttribute('width', "100%");
+
+      //--------------------------------------------------------------------\\
+
+      //Création de la div "liste de choix" pour la personnalisation de Teddy
+
+      //Création d'une div "row"
+      const divRowChoix = document.createElement('div');
+      divPageProduit.appendChild(divRowChoix);
+      divRowChoix.className = 'row';
+
+      //Création d'une div "col "dans la div row
+      const divColChoix1 = document.createElement('div');
+      divRowChoix.appendChild(divColChoix1);
+      divColChoix1.className = 'col-sm-2';
+
+      //Création d'une div "col" dans la div row pour mettre le label
+      const divColChoix2 = document.createElement('div');
+      divRowChoix.appendChild(divColChoix2);
+      divColChoix2.className = 'col-sm-3 text-center';
+
+      //Création du label
+      const divLabelChoix = document.createElement('label');
+      divColChoix2.appendChild(divLabelChoix);
+      divLabelChoix.textContent = 'Choisissez votre couleur';
+
+      //Création d'une div "col" dans la div row pour mettre la liste déroulante
+      const divColChoix3 = document.createElement('div');
+      divRowChoix.appendChild(divColChoix3);
+      divColChoix3.className = 'col-sm-3';
+
+      //Création de la liste déroulante par la balise select
+      const choixCouleur = document.createElement('select');
+      divColChoix3.appendChild(choixCouleur);
+      choixCouleur.className = 'form-control';
+      choixCouleur.setAttribute('name', "couleur de " + teddies.name);
+      choixCouleur.setAttribute('id', "choixCouleur-1");
+
+      //Création d'une div "col" dans la div row pour afficher le tarif
+      const divColTarif = document.createElement('div');
+      divRowChoix.appendChild(divColTarif);
+      divColTarif.className = 'col-sm-3 text-center';
+
+      //Création d'un paragraphe pour mettre le tarif
+      const colTarif = document.createElement('div');
+      divColTarif.appendChild(colTarif);
+      colTarif.textContent = "Tarif : " + teddies.price/100 + " €";
+
+      //Constante pour récupérer les couleurs de la base
+      const couleur = teddies.colors;
+
+      //Création des options avec une boucle for
+      for (i = 0; i < couleur.length; i++){
+        const couleurOption = document.createElement('option');
+        choixCouleur.appendChild(couleurOption);
+        couleurOption.textContent = couleur[i];
+        couleurOption.setAttribute("value", couleur[i]);
+      }
+      //------------------------------------------------------------------\\
+      //Création du bouton ajouter au panier plus enregistrement dans le local storage
+
+      //Création d'une div row
+      const divRowValider = document.createElement('div');
+      divPageProduit.appendChild(divRowValider);
+      divRowValider.className = 'row';
+
+      //création div "col" dans la div row
+      const divColValider = document.createElement('div');
+      divRowValider.appendChild(divColValider);
+      divColValider.className = 'col-sm-12 text-center';
+
+      //Création du bouton ajouter au panier
+      let ajoutPanier = document.createElement('button');
+      divColValider.appendChild(ajoutPanier);
+      ajoutPanier.className = "btn btn-primary produit-valider";
+      ajoutPanier.type = 'submit';
+      ajoutPanier.name = 'ajouter';
+      ajoutPanier.id = 'ajouter';
+      ajoutPanier.textContent = "Ajouter à votre panier";
+
+      //Ajout de la fonction pour l'écoute du click sur le bouton
+      ajoutPanier.addEventListener('click', function (retour) {
+        retour.preventDefault();
+
+        //Ajout de la variable choixTeddy avec les données pour le local Storage
+        let choixTeddy = {
+          teddyNom: teddies.name,
+          teddyId: teddies._id,
+          teddyCouleur: choixCouleur.value,
+          teddyPrix: teddies.price / 100,
+          teddyQuantite: 1,
+          teddyImage: teddies.imageUrl
+        };
+        
+        //Enregistrement des données dans le local storage
+        let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));
+        if (enregistrementTeddy){
+          enregistrementTeddy.push(choixTeddy);
+          localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
+          
+        //Envoi d'un message pour informer que le produit est dans le panier et poser une question
+          if (window.confirm(teddies.name + " a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil ?")) {
+            window.location.href = "panier.html";
+          }else {
+            window.location.href = "index.html";
+          }
+
+        }else {
+          enregistrementTeddy = [];
+          enregistrementTeddy.push(choixTeddy);
+          localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
+          
+          if (window.confirm(teddies.name + "a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil ?")) {
+            window.location.href = "panier.html";
+          }else {
+            window.location.href = "index.html";
           }
         }
-      }
-    }
-  });
+      });
 
-});
-
-
-// Fonctions
-
-// Ajout de produit nouveau produit dans "teddy"
-function ajoutProduct(teddy){
-  teddy.push({"_id": element._id, "name": element.name, "price": element.price, "newPrice": element.price, "quantite": 1, "url": element.url});
-}
-
-// Enregistre les changements apportés a "teddy" sur le localStorage
-function saveProduct(teddy){
-  let items = JSON.stringify(teddy);
-  localStorage.setItem("teddy", items);
-  modal.style.display = "block";
-  panier.style.display = "none";
-}
-
-//fonction Récupère couleur du produit
-const colors = (teddy) =>{
-  let result = "";
-
-  for(let i =0; i < teddy.length; i++){
-    result += `<div>
-      <input type="radio" class="choix" id="${teddy[i]}" name="colors" value="${teddy[i]}">
-      <label for="${teddy[i]}">${teddy[i]}</label></br>
-    </div>`;
-  }
-
-  return result;
-  
-}
-
-
-
-
-
-let carts = document.querySelectorAll(".ajout-panier");
-
-  for (let i=0; i < carts.length; i++) {
-        carts[i].addEventListener("click", () => {
-            cartNumbers(products[i]);
-            totalCost(products[i])
-        })
-  }
-    
-  function onLoadCartsNumbers() {
-    let productNumbers = localStorage.getItem("cartNumbers");
-
-    if(productNumbers) {
-      document.querySelector(".nav-item span").textContent = productNumbers;
-    }
-  }
-
-
-  function cartNumbers(products) {
-  
-      let productNumbers = localStorage.getItem("cartNumbers");
-     
-      productNumbers = parseInt(productNumbers); // analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée
-
-      if(productNumbers) {
-        localStorage.setItem("cartNumbers", productNumbers + 1); //  lorsque lui sont passées le duo clé-valeur, les ajoute à l'emplacement de stockage, sinon elle met à jour la valeur si la clé existe déjà.
-        document.querySelector(".nav-item span").textContent = productNumbers + 1; // retourne le premier Element dans le document correspondant au sélecteur - ou groupe de sélecteurs - spécifié(s), ou null si aucune correspondance n'est trouvée.
-
-      } else {
-        localStorage.setItem("cartNumbers", 1);
-        document.querySelector(".nav-item span").textContent = 1;
-      }   
-
-      setItems(products);
-
-  }
-  
-  function setItems(products){
-    let cartItems = localStorage.getItem("productsInCart");
-    cartItems = JSON.parse(cartItems);
-    
-  
-    if(cartItems != null) {
-        
-      if(cartItems[products._id] == undefined) {
-        cartItems = {
-          ...cartItems,
-          [products._id]: products
-        }
-
-        cartItems[products._id].inCart = 0;
-
-      }
-      
-      cartItems[products._id].inCart += 1;
-  
+      //création d'une conditon else si la réponse est ko
     } else {
-      products.inCart = 1;
-      cartItems = {
-          [products._id]: products
-      }
+      console.error('Le serveur retourne : ', reponse.status);
+      alert("Une erreur est survenue : " + reponse.status);
     }
-    
-    
-    localStorage.setItem("productsInCart", JSON.stringify
-    (cartItems));
-  
-  }
-  
-
-
-
-
-
-
- // Calculer le total des produits qu'on ajoute au panier
-
-function totalCost(products){
-  // console.log("The product price is", products.price/100)
-  let cartCost = localStorage.getItem("totalCost")
-  
-  console.log("My cartCost is", cartCost);
-  console.log(typeof cartCost);
-
-  if(cartCost != null) {
-      cartCost = parseInt (cartCost); // Convertir string en Number
-      localStorage.setItem("totalCost", cartCost + products.price/100);
-  } else {
-      localStorage.setItem("totalCost", products.price/100)
+  } catch (error) {
+    alert("l'erreur suivante est survenu : " + error);
   }
 
 }
-  
-  onLoadCartsNumbers();
-
-
-
-
-
+//lancement de la fonction
+getTeddies();

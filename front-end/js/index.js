@@ -1,121 +1,69 @@
 
-
-// Récupération des produits sur l'API
-fetch('http://localhost:3000/api/teddies')
-.then(response => response.json())
-.then(function(products) {
-  return products
-})
-.catch(function(error) {
-  alert(error)
-})
-.then(products => {
-  const allProducts = document.querySelector('#allProducts'); // Retourne le premier élement dans le document correspondant au sélecteur
-  for(let i = 0; i < products.length; i++) {   // BOUCLE FOR, PARCOURIR LE TABLEAU
-    allProducts.innerHTML += `
-    <div class="products-list">
-      <div class="product-teddies">${products[i].name}</div>
-      <img class="image-teddies" src="${products[i].imageUrl}">
-      <a class="ajout-panier panier" href="#">Ajouter au panier</a>
-      <div class="price-teddies">${products[i].price/100} €</div>
-      <button class="custom-btn"><a href="produits.html?id=${products[i]._id}">Voir Produit</a> </button>
-    </div>` ;
-  }
-
-  let carts = document.querySelectorAll(".ajout-panier");
-
-  for (let i=0; i < carts.length; i++) {
-        carts[i].addEventListener("click", () => {
-            cartNumbers(products[i]);
-            totalCost(products[i])
-        })
-  }
-    
-  function onLoadCartsNumbers() {
-    let productNumbers = localStorage.getItem("cartNumbers");
-
-    if(productNumbers) {
-      document.querySelector(".nav-item span").textContent = productNumbers;
-    }
-  }
+//Création d'une fonction async pour la récupération des données et création du contenu de la page d'acceuil
+// Fonction asynchrone : 
+//c'est une opération qui est executée de ligne en ligne, mais lorsque la ligne est terminée et exécutée, le resultat de cette opération n'est pas encore connue.
 
 
-  function cartNumbers(products) {
-  
-      let productNumbers = localStorage.getItem("cartNumbers");
-     
-      productNumbers = parseInt(productNumbers); // analyse une chaîne de caractère fournie en argument et renvoie un entier exprimé dans une base donnée
-
-      if(productNumbers) {
-        localStorage.setItem("cartNumbers", productNumbers + 1); //  lorsque lui sont passées le duo clé-valeur, les ajoute à l'emplacement de stockage, sinon elle met à jour la valeur si la clé existe déjà.
-        document.querySelector(".nav-item span").textContent = productNumbers + 1; // retourne le premier Element dans le document correspondant au sélecteur - ou groupe de sélecteurs - spécifié(s), ou null si aucune correspondance n'est trouvée.
-
-      } else {
-        localStorage.setItem("cartNumbers", 1);
-        document.querySelector(".nav-item span").textContent = 1;
-      }   
-
-      setItems(products);
-  }
-  
-  function setItems(products){
-    let cartItems = localStorage.getItem("productsInCart");
-    cartItems = JSON.parse(cartItems);
-    
-  
-    if(cartItems != null) {
-        
-      if(cartItems[products._id] == undefined) {
-        cartItems = {
-          ...cartItems,
-          [products._id]: products
-        }
-
-        cartItems[products._id].inCart = 0;
-
-      }
+const getTeddies = async function() {
+  try{
+    //Création d'une variable pour récupérer la réponse de l'envoie fetch
+    let reponse = await fetch('http://localhost:3000/api/teddies/');
+    //Création d'une condition if si la réponse est ok
+    if (reponse.status === 200){ // Le code de statut de réponse HTTP 200 OK indique la réussite d'une requête.
+      let teddies = await reponse.json();
       
-      cartItems[products._id].inCart += 1;
-  
-    } else {
-      products.inCart = 1;
-      cartItems = {
-          [products._id]: products
+      //Création d'une boucle pour récupérer les données de fetch et créer la page index.html
+      for (let teddy of teddies){
+
+        // Récupération de la div avec id teddies de la page index.html pour la mettre dans une constante
+        const divTeddies = document.getElementById('teddies');
+
+        //Création d'une div row dans la div teddies
+        const divRowTeddies = document.createElement('div');
+        divTeddies.appendChild(divRowTeddies);
+        divRowTeddies.className = 'row';
+
+        //Création div col dans la div row
+        const divColTeddies = document.createElement('div');
+        divRowTeddies.appendChild(divColTeddies);
+        divColTeddies.className = 'col-sm-12 text-center accueil-ours';
+
+        //Création du h3 pour le titre du teddy
+        const h3RefTeddies = document.createElement('h3');
+        divColTeddies.appendChild(h3RefTeddies);
+        h3RefTeddies.textContent = teddy.name;
+
+        //Création du tarif pour le teddy
+        const prixTeddies = document.createElement('p');
+        divColTeddies.appendChild(prixTeddies);
+        prixTeddies.textContent = teddy.price / 100 + " €";
+
+        //Création de l'image du teddy
+        const imgTeddies = document.createElement('img');
+        divColTeddies.appendChild(imgTeddies);
+        imgTeddies.setAttribute('src', teddy.imageUrl);
+        imgTeddies.setAttribute('alt', "Ours en peluche qui s'appelle " + teddy.name);
+        imgTeddies.setAttribute('title', "Ours qui s'appelle " + teddy.name);
+        imgTeddies.setAttribute('width', "100%");
+
+        //Création du lien pour aller vers la page produit
+        const ligneProduit = document.createElement('a');
+        ligneProduit.textContent = "Personnaliser " + teddy.name;
+        divColTeddies.appendChild(ligneProduit);
+        ligneProduit.href = "produits.html?id=" + teddy._id;
+        ligneProduit.setAttribute('title', "Venez découvrir" + teddy.name);
       }
+
+      //Création d'une conditon else si la réponse est erreur
+    } else {
+      console.error('Le serveur retourne : ', reponse.status);
+      alert("Une erreur est survenue : " + reponse.status);
     }
-    
-    
-    localStorage.setItem("productsInCart", JSON.stringify
-    (cartItems));
-  
-  }
-  
-
-  
-
-
-
-
-
-
- // Calculer le total des produits qu'on ajoute au panier
-
-function totalCost(products){
-  // console.log("The product price is", products.price/100)
-  let cartCost = localStorage.getItem("totalCost")
-  
-  console.log("My cartCost is", cartCost);
-  console.log(typeof cartCost);
-
-  if(cartCost != null) {
-      cartCost = parseInt (cartCost); // Convertir string en Number
-      localStorage.setItem("totalCost", cartCost + products.price/100);
-  } else {
-      localStorage.setItem("totalCost", products.price/100)
+  } catch (error) {
+    alert("l'erreur suivante est survenu : " + error);
   }
 
 }
-  
-  onLoadCartsNumbers();
 
-});
+//lancement de la fonction
+getTeddies();

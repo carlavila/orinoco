@@ -13,102 +13,127 @@
 </head>
 
 <body>
-
-  <div class="container">
-
-    <nav class="col navbar navbar-expand">
-      <a class="logo" href="index.html"> <img src="img/82fc7900-4462-11eb-9204-6a0cf43fa069.png" width="300" height="150" alt="Logo"></a>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-          <span class="navbar-toggler-icon"></span>
-       </button>
-       <div id="navbarContent" class="collapse navbar-collapse"></div>
-       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a href="panier.html">
-             <ion-icon name="basket"></ion-icon>Panier<span>0</span>
-          </a>
-       </li>
-       </ul>
-       </div>
-    </nav>
- </div>
-
-
- <div class="products-container">
-  <div class="product-header">
-     <h5 class="product-title">PRODUIT</h5>
-     <h5 class="product-price">PRIX</h5>
-     <h5 class="product-quantity">QUANTITÉ</h5>
-     <h5 class="product-colors">COULEURS</h5>
-     <H5 class="product-total">TOTAL</H5>
-  </div>
-
-  <div class="selected-products"></div>
-</div>
-
-<div class="no-products">
-    <button id="vider_panier" class="vider_panier" type="button" onclick="viderPanier()">Vider le panier</button>
-    <div id="panier_vide" class="panier_vide"></div>
-</div>
-
-
-<section id="formulaire" class="container bg-white pb-4 rounded mt-4">
-  <form class="text-center mx-auto pb-4 pt-4">
-      <h1 class="col-8 rounded mx-auto mb-4 bg-secondary text-white"> Validation de commande</h1>
-      <div class="text-center pb-4">
-          Veuillez renseigner vos coordonnées pour finaliser votre commande
+    <header class="fondTitre">
+      <div class="container">
+        <div class="row">
+          <nav class="col navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/82fc7900-4462-11eb-9204-6a0cf43fa069.png" width="300" height="150" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html" title="Page index">Accueil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="panier.html" title="Page panier">Panier</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       </div>
-      <div class="form-row justify-content-center">
-          <div class="form-group form-inline justify-content-center mr-2">
-              <label for="name" class="mr-2">Nom</label>
-              <input type="text" class="champ form-control" id="name" name="name" />
+    </header>
+    
+    <main class="fondPage">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="jumbotron text-center" id="page-panier">
+              <h1>Récapitulatif de votre panier</h1>
+            </div>
           </div>
-          <div class="form-group form-inline justify-content-center">
-              <label for="firstname" class="mr-2">Prénom</label>
-              <input type="text" class="champ form-control" id="firstname" name="firstname"/>
-          </div>
+        </div>
       </div>
-      <div class="form-row justify-content-center">
-          <div class="form-group form-inline justify-content-center mr-2">
-              <label for="adress" class="mr-2">Adresse postale</label>
-              <input type="text" class="champ form-control" id="adress" name="adress" />
-          </div>
+      <div class="container" id="panier-list">
+        <!--Les données du panier sont insérées par le fichier panier.js-->
       </div>
-      <div class="form-row justify-content-center">
-          <div class="form-group form-inline justify-content-center mr-2">
-              <label for="city" class="mr-2">Ville</label>
-              <input type="text" class="champ form-control" id="city" name="city"  />
+      <div class="container" >
+        <form>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="nom">Saisissez votre nom</label>
+              <input type="text" class="form-control" id="nom" placeholder="Nom" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="prenom">Saisissez votre prénom</label>
+              <input type="text" class="form-control" id="prenom" placeholder="Prénom" required>
+            </div>
           </div>
-          <div class="form-group form-inline justify-content-center mr-2">
-              <label for="postalcode" class="mr-2">Code postal</label>
-              <input type="text" class="champ form-control" id="postalcode" name="postalcode"/>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="adresse">saisissez votre adresse</label>
+              <input type="text" class="form-control" id="adresse" placeholder="Adresse" required>
+              
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="ville">Saisissez votre ville</label>
+              <input type="text" class="form-control" id="ville" placeholder="Ville" required>
+            </div>
           </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="email">Saisissez votre email</label>
+              <input type="email" class="form-control" id="email" placeholder="model@gmail.com" required>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center bouton-valider">
+              <button class="btn btn-primary" id="valid-panier" type="submit">Valider la commande</button>
+            </div>
+          </div>
+          
+          
+        </form>
+        
       </div>
-      <div id="erreur_code" class="mb-2"></div>
-      <div class="form-row justify-content-center">
-          <div class="form-group form-inline justify-content-center">
-              <label for="mail" class="mr-2">eMail</label>
-              <div class="input-group">
-                  <div class="input-group-prepend">
-                      <div class="input-group-text">
-                          @
-                      </div>
-                  </div>
-                  <input type="email" class="champ form-control" id="mail" name="mail"  />
+      
+      
+    </main>
+
+    <footer class="footer">
+      <div class="container bloc-sm">
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="text-center">
+              Orinoco leader dans la vente d'ours en peluche.<br />
+            </p>
+            <div class="row row-no-gutters social">
+              <div class="col-sm-3">
+                <div class="text-center">
+                  <a class="social" href="https://twitter.com/twitterfrance" title="Twitter" aria-label="Twitter" target="_blank"><span class="fa fa-twitter icon-md"></span></a>
+                </div>
               </div>
+              <div class="col-sm-3">
+                <div class="text-center">
+                  <a class="social" href="https://fr-fr.facebook.com/" title="Facebook" aria-label="Facebook" target="_blank"><span class="fa fa-facebook icon-md"></span></a>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="text-center">
+                  <a class="social" href="https://dribbble.com/" title="Dribble" aria-label="Dribble" target="_blank"><span class="fa fa-dribbble icon-md"></span></a>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="text-center">
+                  <a class="social" href="https://www.instagram.com/?hl=fr" title="Instagram" aria-label="Instagram" target="_blank"><span class="fa fa-instagram icon-md"></span></a>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <p class="text-center">Copyright 2020 Rodweb53 Tous droits réservés</p>
+              </div>
+            </div>   
           </div>
+        </div>
       </div>
-      <div id="erreur_mail" class="mb-4"></div>
-      <input type="reset" id="rafraichir" name="rafraichir" value="Effacer" class="btn btn-outline-secondary" />
-      <input type="submit" id="envoi" name="envoi" value="Commander" class="btn btn-success" />
-  </form>
-</section>
-  </main>
+    </footer>
 
 
-
-
-<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 <script src="js/panier.js"></script>
 </body>
 </html>
