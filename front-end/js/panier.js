@@ -107,17 +107,14 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
 
     // --------Calcul du montant total de la commande --------\\
 
-    //Création d'un array pour stocker les prix de chaque ligne
-    let montantLigne = []
-    for (enregistrement of enregistrementTeddy) {
-      let ligne = enregistrement.teddyPrix;
-      montantLigne.push(ligne);
-    };
 
-    //Fonction pour le calcul de valeur dans un array
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const montantTotal = montantLigne.reduce(reducer, 0);
 
+// CALCULER LE TOTAL DES PRODUITS QU'ON AJOUTE AU PANIER 
+
+let totalCart = 0;
+for (let i = 0; i < enregistrementTeddy.length; i++) {
+    totalCart = totalCart + (enregistrementTeddy[i].teddyPrix);
+}
 
     //-----Insertion de la ligne de montant dans la page ---\\
 
@@ -129,7 +126,7 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
     //Création du tarif du teddy pour la ligne du panier
     const panierTarifTotal = document.createElement('h3');
     divColPanierTarifTotal.appendChild(panierTarifTotal);
-    panierTarifTotal.textContent = "Le montant total de la commande est de " + montantTotal + " €";
+    panierTarifTotal.textContent = "Total : " + totalCart + " €";
     panierTarifTotal.className = "montant-total"
 
 
@@ -175,7 +172,7 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
 
     //Variable pour effectuer les tests de caractère sur les champs du formulaire
     let testNomVilleValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
-    let adresseValid = /^[A-Z-a-z-0-9\s]{5,80}$/;
+    let adresseValid = /^[A-ZéèîïÉÈÎÏa-z0-9\s]{5,80}$/;
     let emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     validPanier.addEventListener('click', validation);
@@ -208,8 +205,8 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
 
             //envoie du montant total de la commande de le localstorage
       } else {event.preventDefault();
-            localStorage.setItem('montantTotal', montantTotal);
-            const prixSauver = localStorage.getItem('montantTotal');
+            localStorage.setItem('totalCart', totalCart);
+            const prixSauver = localStorage.getItem('totalCart');
 
             //---création d'un array pour mettre le contact et les produits----\\
             //création du contact

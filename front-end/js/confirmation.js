@@ -3,7 +3,7 @@
 let orderId = localStorage.getItem('reponseOrder');
 
 //récupération du montant total de la commande
-const prixSauver = localStorage.getItem('montantTotal');
+const prixSauver = localStorage.getItem('totalCart');
 
 //récupération des données dans le local storage
 let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));

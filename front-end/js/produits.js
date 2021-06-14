@@ -149,10 +149,10 @@ const getTeddies = async function() {
         };
         
         //Enregistrement des données dans le local storage
-        let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));
+        let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));// la valeur "enregistrementTeddy" est envoyée à la clé "nouvelArticle"
         if (enregistrementTeddy){
-          enregistrementTeddy.push(choixTeddy);
-          localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
+          enregistrementTeddy.push(choixTeddy); // on rajoute choix "choixTeddy" à la fin du tableau "enregistrementTeddy"
+          localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy)); //la clés et la valeurs ajouté dans le local Storage
           
         //Envoi d'un message pour informer que le produit est dans le panier et poser une question
           if (window.confirm(teddies.name + " a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil ?")) {
