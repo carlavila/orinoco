@@ -86,11 +86,11 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
           event.preventDefault();
 
           //Récupération de l'id de la ligne sélectionnée
-          let id = this.closest(".supprimer-ligne").id;
+          let id = this.closest(".supprimer-ligne").id; //Il commence à l'élément lui-même, puis teste le parent, le grand-parent, et ainsi de suite jusqu'à ce qu'une correspondance soit trouvée.
           //alert('suppression id ' + supprimer-ligne.id)
 
           //Suppression de la ligne
-          enregistrementTeddy.splice(id, 1);
+          enregistrementTeddy.splice(id, 1); // La méthode splice() supprime également un ou plusieurs éléments du tableau. Elle prend en premier argument l'index à partir duquel on commence la suppression et en deuxième argument le nombre d'éléments à supprimer. 
           
           //Enregistrement des lignes dans le localstorage suite à la suppression
           localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
@@ -106,8 +106,6 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
 
 
     // --------Calcul du montant total de la commande --------\\
-
-
 
 // CALCULER LE TOTAL DES PRODUITS QU'ON AJOUTE AU PANIER 
 
@@ -151,7 +149,7 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
     //Fonction pour supprimer les lignes du panier via la classe supprimer-total du bouton
     boutonSupprimerTotal.addEventListener("click" , function (retour) {
       retour.preventDefault();
-      localStorage.removeItem('nouvelArticle');
+      localStorage.removeItem('nouvelArticle'); // La méthode removeItem() de l'interface Storage , lorsque vous lui passez une clé en argument, va supprimer la ressource avec le nom de clé correspondant du storage. 
 
       //Message d'avertissement à l'utilisateur
       alert('Votre panier a été vidé !')
@@ -199,6 +197,8 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
         } else if (testNomVilleValid.test(ville.value) == false){
             event.preventDefault();
             alert("votre ville n'est pas conforme")
+
+            //vérification si le champ adresse mail contient des caractères interdits
         } else if (emailValid.test(email.value) == false){
             event.preventDefault();
             alert("votre adresse mail n'est pas conforme")
@@ -206,7 +206,7 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
             //envoie du montant total de la commande de le localstorage
       } else {event.preventDefault();
             localStorage.setItem('totalCart', totalCart);
-            const prixSauver = localStorage.getItem('totalCart');
+            JSON.parse(localStorage.getItem('totalCart')); /*const prixSauver = localStorage.getItem('totalCart');*/
 
             //---création d'un array pour mettre le contact et les produits----\\
             //création du contact

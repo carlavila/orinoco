@@ -13,7 +13,7 @@ const getTeddies = async function() {
       let teddies = await reponse.json();
       
       //Création d'une boucle pour récupérer les données de fetch et créer la page index.html
-      for (let teddy of teddies){
+      for (let teddy of teddies){ //permet de créer une boucle Array qui parcourt l'objet teddies
 
             // Récupération de la div avec id teddies de la page index.html pour la mettre dans une constante
             const divTeddies = document.getElementById('teddies');

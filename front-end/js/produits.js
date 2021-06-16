@@ -1,8 +1,8 @@
 
 //Initialisation de la constante pour rechercher l'ID dans l'url, paramétrer l'URL
-const adresseChoix = window.location.search; // Renvoie un objet Location contenant des informations concernant l'URL actuelle du document et fournit des méthodes pour modifier cette URL. Cette propriété peut être utilisée pour charger une autre page.
-const adresseRecu = new URLSearchParams (adresseChoix);
-const id = adresseRecu.get ('id');
+
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get ('id');
 
 
 //Création de la fonction général pour la page produit
@@ -155,22 +155,22 @@ const getTeddies = async function() {
           localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy)); //la clés et la valeurs ajouté dans le local Storage
           
         //Envoi d'un message pour informer que le produit est dans le panier et poser une question
-          if (window.confirm(teddies.name + " a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil ?")) {
-            window.location.href = "panier.html";
-          }else {
-            window.location.href = "index.html";
-          }
+            if (window.confirm(teddies.name + " a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil")) {
+              window.location.href = "panier.html";
+            } else {
+              window.location.href = "index.html";
+            }
 
-        }else {
-          enregistrementTeddy = [];
-          enregistrementTeddy.push(choixTeddy);
-          localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
+          } else {
+            enregistrementTeddy = [];
+            enregistrementTeddy.push(choixTeddy);
+            localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
           
-          if (window.confirm(teddies.name + "a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil ?")) {
-            window.location.href = "panier.html";
-          }else {
-            window.location.href = "index.html";
-          }
+            if (window.confirm(teddies.name + "a été ajouté à votre panier. pour aller sur votre panier cliquez sur OK sinon cliquez sur Annuler pour revenir à la page d'accueil")) {
+              window.location.href = "panier.html";
+            } else {
+              window.location.href = "index.html";
+            }
         }
       });
 
