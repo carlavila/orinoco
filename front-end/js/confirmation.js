@@ -1,4 +1,6 @@
+
 //-----Récupération des données pour faire la page de confirmation -----\\
+
 //Récupération du N° de commande
 let orderId = localStorage.getItem('reponseOrder');
 
@@ -9,8 +11,10 @@ const prixSauver = localStorage.getItem('totalCart');
 let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));
 
 
+
 //------------ Paragraphe d'entête ----------------\\
-//récupération d'id html pour placer les données de l'entête de confirma tion de cde
+
+//récupération d'id html pour placer les données de l'entête de confirmation
 const teteConfirmation = document.getElementById('tete-confirmation');
 
 //paragraphe pour confirmer le N° de commande
@@ -27,9 +31,8 @@ teteConfirmation.appendChild(paraTeteConf3);
 paraTeteConf3.textContent = orderId;
 
 
-
-
 //------ Section pour le détail de la commande -----\\
+
 //récupération d'id html pour placer les données
 const panierListe = document.getElementById('panier-confirmation');
 
@@ -47,47 +50,50 @@ const detailConf = document.createElement('p');
 divColDetailConf.appendChild(detailConf);
 detailConf.textContent = "Détail de votre commande :"; 
 
+
 //------- Récupération des éléments de détail de la commande -----\\
 let i = 0;
-      for (enregistrement of enregistrementTeddy) {
+for (enregistrement of enregistrementTeddy) {
       
-        //création div col dans la div row pour le descriptif du teddy
-        const divColPanierListeDescrip = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeDescrip);
-        divColPanierListeDescrip.className = 'col-sm-5 text-center';
+  //création div col dans la div row pour le descriptif du teddy
+  const divColPanierListeDescrip = document.createElement('div');
+  divRowPanierListe.appendChild(divColPanierListeDescrip);
+  divColPanierListeDescrip.className = 'col-sm-5 text-center';
 
-        //création du descriptif du teddy pour la ligne du panier
-        const colPanierListeDescrip = document.createElement('p');
-        divColPanierListeDescrip.appendChild(colPanierListeDescrip);
-        colPanierListeDescrip.textContent = enregistrement.teddyNom + " avec l'option de couleur " + enregistrement.teddyCouleur ;
+  //création du descriptif du teddy pour la ligne du panier
+  const colPanierListeDescrip = document.createElement('p');
+  divColPanierListeDescrip.appendChild(colPanierListeDescrip);
+  colPanierListeDescrip.textContent = enregistrement.teddyNom + " avec l'option de couleur " + enregistrement.teddyCouleur ;
 
-        //création div col dans la div row pour la qté 
-        const divColPanierListeQte = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeQte);
-        divColPanierListeQte.className = 'col-sm-2 text-center';
+  //création div col dans la div row pour la qté 
+  const divColPanierListeQte = document.createElement('div');
+  divRowPanierListe.appendChild(divColPanierListeQte);
+  divColPanierListeQte.className = 'col-sm-2 text-center';
 
-        //création de la qté du teddy pour la ligne du panier
-        const colPanierListeQte = document.createElement('p');
-        divColPanierListeQte.appendChild(colPanierListeQte);
-        colPanierListeQte.textContent = "Qté " + enregistrement.teddyQuantite;
+  //création de la qté du teddy pour la ligne du panier
+  const colPanierListeQte = document.createElement('p');
+  divColPanierListeQte.appendChild(colPanierListeQte);
+  colPanierListeQte.textContent = "Qté " + enregistrement.teddyQuantite;
 
-        //création div col dans la div row pour le tarif
-        const divColPanierListeTarif = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeTarif);
-        divColPanierListeTarif.className = 'col-sm-2 text-center produitpanier';
+  //création div col dans la div row pour le tarif
+  const divColPanierListeTarif = document.createElement('div');
+  divRowPanierListe.appendChild(divColPanierListeTarif);
+  divColPanierListeTarif.className = 'col-sm-2 text-center produitpanier';
         
-        //création du tarif du teddy pour la ligne du panier
-        const colPanierListeTarif = document.createElement('p');
-        divColPanierListeTarif.appendChild(colPanierListeTarif);
-        colPanierListeTarif.textContent = "Tarif " + enregistrement.teddyPrix + " €";
+  //création du tarif du teddy pour la ligne du panier
+  const colPanierListeTarif = document.createElement('p');
+  divColPanierListeTarif.appendChild(colPanierListeTarif);
+  colPanierListeTarif.textContent = "Tarif " + enregistrement.teddyPrix + " €";
 
-        //création div col dans la div row pour le tarif
-        const divColPanierListeBouton = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeBouton);
-        divColPanierListeBouton.className = 'col-sm-3 text-center';
-      };
+  //création div col dans la div row pour le tarif
+  const divColPanierListeBouton = document.createElement('div');
+  divRowPanierListe.appendChild(divColPanierListeBouton);
+  divColPanierListeBouton.className = 'col-sm-3 text-center';
+};
+
 
 //------------ Paragraphe montant de la commande ----------------\\
+
 //récupération d'id html pour placer le montant total de la commande
 const merciConfirmation = document.getElementById('merci-confirmation');
 
@@ -98,5 +104,5 @@ paramerciConf1.textContent = "Le montant total de la commande est de " + prixSau
 
 
 //suppression des données du local storage
-//localStorage.removeItem("nouvelArticle");
+localStorage.removeItem("nouvelArticle");
 localStorage.clear();

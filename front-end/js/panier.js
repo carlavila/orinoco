@@ -1,3 +1,4 @@
+
 //Récupération des données dans le local storage
 let enregistrementTeddy = JSON.parse(localStorage.getItem('nouvelArticle'));
 
@@ -17,80 +18,80 @@ divRowPanierListe.className = 'row';
 if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
   //---- si le panier est vide ----\\
 
-//Création div "col" dans la div row
+  //Création div "col" dans la div row
   const divColPanierListe = document.createElement('div');
   divRowPanierListe.appendChild(divColPanierListe);
   divColPanierListe.className = 'col-sm-12 text-center';
 
-//Création du message pour le panier vide
+  //Création du message pour le panier vide
   const panierVide = document.createElement('h2');
   divColPanierListe.appendChild(panierVide);
   panierVide.className =  "text-danger"
   panierVide.textContent = "votre panier est vide";
-  } else {
-   
-    
-//-----S'il y a des éléments dans le panier création de la liste du panier -----\\
 
-//création de la variable pour faire le compteur
-  let i = 0;
+} else { //-----S'il y a des éléments dans le panier création de la liste du panier -----\\
+   
+    //création de la variable pour faire le compteur
+    let i = 0;
+
     for (enregistrement of enregistrementTeddy) {
       
-        //Création d'une div "col" dans la div row pour le descriptif du teddy
-        const divColPanierListeDescrip = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeDescrip);
-        divColPanierListeDescrip.className = 'col-sm-5 text-center';
+      //Création d'une div "col" dans la div row pour le descriptif du teddy
+      const divColPanierListeDescrip = document.createElement('div');
+      divRowPanierListe.appendChild(divColPanierListeDescrip);
+      divColPanierListeDescrip.className = 'col-sm-5 text-center';
 
-        //Création du descriptif du teddy pour la ligne du panier
-        const colPanierListeDescrip = document.createElement('p');
-        divColPanierListeDescrip.appendChild(colPanierListeDescrip);
-        colPanierListeDescrip.textContent = enregistrement.teddyNom + " de couleur " + enregistrement.teddyCouleur ;
+      //Création du descriptif du teddy pour la ligne du panier
+      const colPanierListeDescrip = document.createElement('p');
+      divColPanierListeDescrip.appendChild(colPanierListeDescrip);
+      colPanierListeDescrip.textContent = enregistrement.teddyNom + " de couleur " + enregistrement.teddyCouleur ;
 
-        //Création div col dans la div row pour la qté 
-        const divColPanierListeQte = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeQte);
-        divColPanierListeQte.className = 'col-sm-2 text-center';
+      //Création div col dans la div row pour la qté 
+      const divColPanierListeQte = document.createElement('div');
+      divRowPanierListe.appendChild(divColPanierListeQte);
+      divColPanierListeQte.className = 'col-sm-2 text-center';
 
-        //Création de la qté du teddy pour la ligne du panier
-        const colPanierListeQte = document.createElement('p');
-        divColPanierListeQte.appendChild(colPanierListeQte);
-        colPanierListeQte.textContent = "Quantité " + enregistrement.teddyQuantite;
+      //Création de la qté du teddy pour la ligne du panier
+      const colPanierListeQte = document.createElement('p');
+      divColPanierListeQte.appendChild(colPanierListeQte);
+      colPanierListeQte.textContent = "Quantité " + enregistrement.teddyQuantite;
 
-        //Création div col dans la div row pour le tarif
-        const divColPanierListeTarif = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeTarif);
-        divColPanierListeTarif.className = 'col-sm-2 text-center produitpanier';
+      //Création div col dans la div row pour le tarif
+      const divColPanierListeTarif = document.createElement('div');
+      divRowPanierListe.appendChild(divColPanierListeTarif);
+      divColPanierListeTarif.className = 'col-sm-2 text-center produitpanier';
                 
-        //Création du tarif du teddy pour la ligne du panier
-        const colPanierListeTarif = document.createElement('p');
-        divColPanierListeTarif.appendChild(colPanierListeTarif);
-        colPanierListeTarif.textContent = "Tarif " + enregistrement.teddyPrix + " €";
+      //Création du tarif du teddy pour la ligne du panier
+      const colPanierListeTarif = document.createElement('p');
+      divColPanierListeTarif.appendChild(colPanierListeTarif);
+      colPanierListeTarif.textContent = "Tarif " + enregistrement.teddyPrix + " €";
 
-        //Création div col dans la div row pour le bouton supprimer
-        const divColPanierListeBouton = document.createElement('div');
-        divRowPanierListe.appendChild(divColPanierListeBouton);
-        divColPanierListeBouton.className = 'col-sm-3 text-center';
+      //Création div col dans la div row pour le bouton supprimer
+      const divColPanierListeBouton = document.createElement('div');
+      divRowPanierListe.appendChild(divColPanierListeBouton);
+      divColPanierListeBouton.className = 'col-sm-3 text-center';
 
-        //Création du bouton supprimer le produit sur une ligne
-        const boutonSupprimerLigne = document.createElement('button');
-        divColPanierListeBouton.appendChild(boutonSupprimerLigne);
-        boutonSupprimerLigne.className = "btn btn-danger supprimer-ligne";
-        boutonSupprimerLigne.id = i++;
-        boutonSupprimerLigne.textContent = "Supprimer";
-        };
+      //Création du bouton supprimer le produit sur une ligne
+      const boutonSupprimerLigne = document.createElement('button');
+      divColPanierListeBouton.appendChild(boutonSupprimerLigne);
+      boutonSupprimerLigne.className = "btn btn-danger supprimer-ligne";
+      boutonSupprimerLigne.id = i++;
+      boutonSupprimerLigne.textContent = "Supprimer";
+    };
 
       //Boucle pour selectionner et supprimer la ligne de produit associé au bouton via la classe "supprimer-ligne"
       let supprimerLigne = document.getElementsByClassName('supprimer-ligne');
+
       for (let i = 0 ; i < supprimerLigne.length; i++) {
         supprimerLigne[i].addEventListener('click' , function (event) {
           event.preventDefault();
 
           //Récupération de l'id de la ligne sélectionnée
-          let id = this.closest(".supprimer-ligne").id; //Il commence à l'élément lui-même, puis teste le parent, le grand-parent, et ainsi de suite jusqu'à ce qu'une correspondance soit trouvée.
+          let id = this.id; 
           //alert('suppression id ' + supprimer-ligne.id)
 
           //Suppression de la ligne
-          enregistrementTeddy.splice(id, 1); // La méthode splice() supprime également un ou plusieurs éléments du tableau. Elle prend en premier argument l'index à partir duquel on commence la suppression et en deuxième argument le nombre d'éléments à supprimer. 
+          enregistrementTeddy.splice(id, 1); 
           
           //Enregistrement des lignes dans le localstorage suite à la suppression
           localStorage.setItem('nouvelArticle', JSON.stringify(enregistrementTeddy));
@@ -99,20 +100,19 @@ if (enregistrementTeddy == null || enregistrementTeddy.length === 0) {
           //Message d'avertissement à l'utilisateur
           alert('Votre ligne a été supprimé du panier !')
 
-          //Retour sur la page d'acceuil
+          //Retour sur la page du panier
           window.location.href = "panier.html";
         });
       };
-
 
     // --------Calcul du montant total de la commande --------\\
 
 // CALCULER LE TOTAL DES PRODUITS QU'ON AJOUTE AU PANIER 
 
-let totalCart = 0;
-for (let i = 0; i < enregistrementTeddy.length; i++) {
-    totalCart = totalCart + (enregistrementTeddy[i].teddyPrix);
-}
+    let totalCart = 0;
+    for (let i = 0; i < enregistrementTeddy.length; i++) {
+      totalCart = totalCart + (enregistrementTeddy[i].teddyPrix);
+    }
 
     //-----Insertion de la ligne de montant dans la page ---\\
 
@@ -176,9 +176,9 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
     validPanier.addEventListener('click', validation);
     
 
-    function validation(event){
+    function validation(event) {
 
-        //Vérification si le champ nom contient des caractères interdits
+      //Vérification si le champ nom contient des caractères interdits
         if (testNomVilleValid.test(nom.value) == false){
             event.preventDefault();
             alert("Votre nom n'est pas conforme")
@@ -204,7 +204,7 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
             alert("votre adresse mail n'est pas conforme")
 
             //envoie du montant total de la commande de le localstorage
-      } else {event.preventDefault();
+        } else {event.preventDefault();
             localStorage.setItem('totalCart', totalCart);
             JSON.parse(localStorage.getItem('totalCart')); /*const prixSauver = localStorage.getItem('totalCart');*/
 
@@ -219,11 +219,12 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
             }
 
             //création du array pour les teddy en passant leur id
-            let products = [];
+            let products = []; //tableau
             for (enregistrement of enregistrementTeddy) {
               let productsId = enregistrement.teddyId;
               products.push((productsId));
             }
+   
 
             //fusion de contact et produit
             let fusion = {
@@ -240,21 +241,21 @@ for (let i = 0; i < enregistrementTeddy.length; i++) {
                   headers: {
                     'Content-type': 'application/json'
                   }
-                });
-                if (reponse.ok){
-                  let donnees = await reponse.json();
-                  localStorage.setItem("reponseOrder", donnees.orderId);
-                  window.location = 'confirmation.html';
-                } else {
-                  event.preventDefault();
-                  console.error('reponse du serveur : ', reponse.status);
-                  alert ("L'erreur rencontrée est : " + reponse.status);
-                }
+              });
+              if (reponse.ok){
+                let donnees = await reponse.json();
+                localStorage.setItem("reponseOrder", donnees.orderId); // numéro de commande
+                window.location = 'confirmation.html';
+              } else {
+                event.preventDefault();
+                console.error('reponse du serveur : ', reponse.status);
+                alert ("L'erreur rencontrée est : " + reponse.status);
+              }
               } catch (error){
                 alert ("erreur : " + error);
               }
             };
             envoie(fusion);
-        }
+          }
       };
-  };
+};

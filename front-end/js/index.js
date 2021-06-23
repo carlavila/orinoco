@@ -1,19 +1,17 @@
 
-//Création d'une fonction async pour la récupération des données et création du contenu de la page d'acceuil
-// Fonction asynchrone : 
-//c'est une opération qui est executée de ligne en ligne, mais lorsque la ligne est terminée et exécutée, le resultat de cette opération n'est pas encore connue.
 
+//Création d'une fonction async pour la récupération des données et création du contenu de la page d'acceuil
 
 const getTeddies = async function() {
-  try{
-    //Création d'une variable pour récupérer la réponse de l'envoie fetch
-    let reponse = await fetch('http://localhost:3000/api/teddies/');
-    //Création d'une condition if si la réponse est ok
-    if (reponse.status === 200){ // Le code de statut de réponse HTTP 200 OK indique la réussite d'une requête.
-      let teddies = await reponse.json();
+  try {
+      //Création d'une variable pour récupérer la réponse de l'envoie fetch
+      let reponse = await fetch('http://localhost:3000/api/teddies/');
+      //Création d'une condition if si la réponse est ok
+      if (reponse.status === 200) { // Le code de statut de réponse HTTP 200 OK indique la réussite d'une requête.
+          let teddies = await reponse.json();
       
-      //Création d'une boucle pour récupérer les données de fetch et créer la page index.html
-      for (let teddy of teddies){ //permet de créer une boucle Array qui parcourt l'objet teddies
+          //Création d'une boucle pour récupérer les données de fetch et créer la page index.html
+          for (let teddy of teddies) { 
 
             // Récupération de la div avec id teddies de la page index.html pour la mettre dans une constante
             const divTeddies = document.getElementById('teddies');
@@ -52,17 +50,16 @@ const getTeddies = async function() {
             divColTeddies.appendChild(ligneProduit);
             ligneProduit.href = "produits.html?id=" + teddy._id;
             ligneProduit.setAttribute('title', "Venez découvrir" + teddy.name);
-      }
+          }
 
-      //Création d'une conditon else si la réponse est erreur
-    } else {
+        //Création d'une conditon else si la réponse est erreur
+      } else {
       console.error('Le serveur retourne : ', reponse.status);
       alert("Une erreur est survenue : " + reponse.status);
-    }
+      } 
   } catch (error) {
     alert("l'erreur suivante est survenu : " + error);
   }
-
 }
 
 //lancement de la fonction
