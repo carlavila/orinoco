@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil Orinoco</title>
-    <meta name="title" content="Accueil - Orinoco">
-    <meta name="description" content="Orinoco est un site e-commerce à thème mettant à la vente des ours en peluche.">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <meta name="title" content="Accueil - Orinoco" />
+    <meta
+      name="description"
+      content="Orinoco est un site e-commerce à thème mettant à la vente des ours en peluche."
+    />
+    <link
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-  
-  <header class="fondTitre">
-    <div class="container">
-
-      <nav class="col navbar navbar-expand">
+  <body>
+    <header class="fondTitre">
+      <div class="container">
+        <nav class="col navbar navbar-expand">
           <a class="navbar-brand" href="index.html">
-            <img src="img/82fc7900-4462-11eb-9204-6a0cf43fa069.png" width="300" height="150" alt="Logo">
+            <img
+              src="img/82fc7900-4462-11eb-9204-6a0cf43fa069.png"
+              width="300"
+              height="150"
+              alt="Logo"
+            />
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarContent"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
-      </nav>
-    </div>
-  </header>
-    
+        </nav>
+      </div>
+    </header>
+
     <main class="fondPage">
       <div class="container">
         <div class="row">
@@ -41,49 +57,74 @@
       <div class="container" id="panier-list">
         <!--Les données du panier sont insérées par le fichier panier.js-->
       </div>
-      <div class="container" >
+      <div class="container">
         <form>
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label for="nom">Saisissez votre nom</label>
-              <input type="text" class="form-control" id="nom" placeholder="Nom" required>
+              <input
+                type="text"
+                class="form-control"
+                id="nom"
+                placeholder="Nom"
+                required
+              />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="prenom">Saisissez votre prénom</label>
-              <input type="text" class="form-control" id="prenom" placeholder="Prénom" required>
+              <input
+                type="text"
+                class="form-control"
+                id="prenom"
+                placeholder="Prénom"
+                required
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label for="adresse">saisissez votre adresse</label>
-              <input type="text" class="form-control" id="adresse" placeholder="Adresse" required>
-              
+              <input
+                type="text"
+                class="form-control"
+                id="adresse"
+                placeholder="Adresse"
+                required
+              />
             </div>
             <div class="col-md-6 mb-3">
               <label for="ville">Saisissez votre ville</label>
-              <input type="text" class="form-control" id="ville" placeholder="Ville" required>
+              <input
+                type="text"
+                class="form-control"
+                id="ville"
+                placeholder="Ville"
+                required
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label for="email">Saisissez votre email</label>
-              <input type="email" class="form-control" id="email" placeholder="model@gmail.com" required>
-              
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="model@gmail.com"
+                required
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 text-center bouton-valider">
-              <button class="btn btn-primary" id="valid-panier" type="submit">Valider la commande</button>
+              <button class="btn btn-primary" id="valid-panier" type="submit">
+                Valider la commande
+              </button>
             </div>
           </div>
-          
-          
         </form>
-        
       </div>
-      
-      
     </main>
 
     <footer class="footer">
@@ -96,34 +137,58 @@
             <div class="row row-no-gutters social">
               <div class="col-sm-3">
                 <div class="text-center">
-                  <a class="social" href="https://twitter.com/twitterfrance" title="Twitter" aria-label="Twitter" target="_blank"><span class="fa fa-twitter icon-md"></span></a>
+                  <a
+                    class="social"
+                    href="https://twitter.com/twitterfrance"
+                    title="Twitter"
+                    aria-label="Twitter"
+                    target="_blank"
+                    ><span class="fa fa-twitter icon-md"></span
+                  ></a>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="text-center">
-                  <a class="social" href="https://fr-fr.facebook.com/" title="Facebook" aria-label="Facebook" target="_blank"><span class="fa fa-facebook icon-md"></span></a>
+                  <a
+                    class="social"
+                    href="https://fr-fr.facebook.com/"
+                    title="Facebook"
+                    aria-label="Facebook"
+                    target="_blank"
+                    ><span class="fa fa-facebook icon-md"></span
+                  ></a>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="text-center">
-                  <a class="social" href="https://dribbble.com/" title="Dribble" aria-label="Dribble" target="_blank"><span class="fa fa-dribbble icon-md"></span></a>
+                  <a
+                    class="social"
+                    href="https://dribbble.com/"
+                    title="Dribble"
+                    aria-label="Dribble"
+                    target="_blank"
+                    ><span class="fa fa-dribbble icon-md"></span
+                  ></a>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="text-center">
-                  <a class="social" href="https://www.instagram.com/?hl=fr" title="Instagram" aria-label="Instagram" target="_blank"><span class="fa fa-instagram icon-md"></span></a>
+                  <a
+                    class="social"
+                    href="https://www.instagram.com/?hl=fr"
+                    title="Instagram"
+                    aria-label="Instagram"
+                    target="_blank"
+                    ><span class="fa fa-instagram icon-md"></span
+                  ></a>
                 </div>
               </div>
-            </div>   
+            </div>
           </div>
         </div>
       </div>
     </footer>
 
-
-<script src="js/panier.js"></script>
-</body>
+    <script src="js/panier.js"></script>
+  </body>
 </html>
-
-
- 
